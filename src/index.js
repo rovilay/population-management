@@ -5,12 +5,14 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 
 import routes from './routes';
+import runDB from './config/db';
 
 dotenv.config();
 
 const { PORT = 4444 } = process.env;
 
 const app = express();
+runDB(); // initialize database connection
 
 app.use(cors());
 app.use(bodyParser.json());
