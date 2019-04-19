@@ -5,23 +5,8 @@
 	"repository": "https://github.com/rovilay/population-management.git",
 	"author": "rovilay <rovilayjnr01@gmail.com>",
 	"license": "MIT",
-	"jest": {
-		"collectCoverage": true,
-		"collectCoverageFrom": [
-			"src/**/*.js",
-			"!src/index.js"
-		],
-		"testMatch": [
-			"<rootDir>/src/**/__tests__/**/?(*.)(spec|test)js",
-			"<rootDir>/src/**/?(*.)(spec|test).js"
-		],
-		"testEnvironment": "node",
-		"transform": {
-			".*": "babel-jest"
-		}
-	},
 	"scripts": {
-		"test": "NODE_ENV=test jest --no-cache  --detectOpenHandles --runInBand --forceExit",
+		"test": "NODE_ENV=test nyc mocha src/__tests__ --recursive --require @babel/register --exit",
 		"build": "babel src -d dist",
 		"start": "node ./dist/index.js",
 		"server": "nodemon --exec babel-node ./src/index.js"
@@ -41,13 +26,14 @@
 	},
 	"devDependencies": {
 		"@babel/node": "^7.2.2",
-		"babel-jest": "^24.7.1",
+		"@babel/register": "^7.4.0",
 		"chai": "^4.2.0",
+		"chai-http": "^4.2.1",
 		"eslint": "^5.16.0",
 		"eslint-config-airbnb-base": "^13.1.0",
 		"eslint-plugin-import": "^2.17.2",
-		"jest": "^24.7.1",
+		"mocha": "^6.1.4",
 		"nodemon": "^1.18.11",
-		"supertest": "^4.0.2"
+		"nyc": "^14.0.0"
 	}
 }

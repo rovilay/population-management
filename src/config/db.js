@@ -4,8 +4,13 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const dbURL = process.env.DB_URL;
-const db = mongoose.connection;
+let dbURL = process.env.DB_URL;
+export const db = mongoose.connection;
+
+
+if (process.env.NODE_ENV === 'test') {
+    dbURL = process.env.TEST_DB_URL;
+}
 
 db.on('connected', () => {
     console.log('Connection Established');
@@ -28,6 +33,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 const runDB = async () => {
     try {
+        console.log('connecting db ...');
         await mongoose.connect(dbURL, {
             useCreateIndex: true,
             useNewUrlParser: true,
@@ -35,6 +41,7 @@ const runDB = async () => {
             reconnectTries: 1000000,
             reconnectInterval: 3000
         });
+        return;
     } catch (error) {
         console.error(error);
     }
