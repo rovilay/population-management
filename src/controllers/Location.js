@@ -43,6 +43,7 @@ class LocationController {
                     message: defaultSuccessMsg,
                     location: {
                         _id: newLocation._id,
+                        location: newLocation.location,
                         malePopulation: newLocation.malePopulation,
                         femalePopulation: newLocation.femalePopulation,
                         totalPopulation: newLocation.totalPopulation,
