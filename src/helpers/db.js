@@ -35,7 +35,25 @@ class DB {
      */
     static async create(Model, conditions) {
         try {
-            const newDocument = await Model.create(conditions);
+            const newDocuments = await Model.create(conditions);
+            return newDocuments;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    /**
+     * Creates many resources in the DB at once
+     *
+     * @static
+     * @param {*} Model - Model of Collections to query
+     * @param {array} conditions - array of data to write to the DB
+     * @returns {object} new document
+     * @memberof DB
+     */
+    static async createMany(Model, conditions) {
+        try {
+            const newDocument = await Model.insertMany(conditions);
             return newDocument;
         } catch (error) {
             throw error;
