@@ -51,7 +51,7 @@ You should now be able to access the API via http://localhost:port/api/v1/
 **NOTE:** Create a `.env` file configuration following the `.env.sample`.
 
 ## Project Details
-`SMS:`
+`locations:`
  - create population for a location
  - get population for a location
  - update a location
